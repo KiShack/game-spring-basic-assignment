@@ -14,9 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.stereotype.Service; //LV.2
+import com.gamebasic.game.dto.GameSummaryResponse; //LV.7
+import com.gamebasic.game.dto.RenameRequest; //LV.8
 import java.util.ArrayList;
 import java.util.List;
-import com.gamebasic.game.dto.GameSummaryResponse; //LV.7
 
 @Service //LV.2 작업 내용
 @RequiredArgsConstructor
@@ -143,5 +144,22 @@ public class GameService {
      }
 
     // TODO (Lv 8): 플레이어 이름 변경 — 변경 감지로 수정
+    @Transactional
+    public void renameGame(Long gameId, RenameRequest request) {
+
+        Game game = findGame(gameId);
+
+        game.rename(request.getPlayerName());
+    }
+
     // TODO (Lv 8): 게임 삭제
+    @Transactional
+    public void deleteGame(Long gameId) {
+
+        Game game = findGame(gameId);
+
+        runCardRepository.deleteAllByGame(game);
+
+        gameRepository.delete(game);
+    }
 }

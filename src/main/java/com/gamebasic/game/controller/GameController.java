@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.gamebasic.game.dto.GameSummaryResponse; //LV.7
 
+import com.gamebasic.game.dto.RenameRequest; //LV.8
+import org.springframework.web.bind.annotation.PatchMapping; //LV.8
+import org.springframework.web.bind.annotation.DeleteMapping; //LV.8
+
 import java.util.List;
 
 @RestController
@@ -57,6 +61,25 @@ public class GameController {
         return ResponseEntity.ok(
                 gameService.getGame(gameId)
         );
+    }
+    ///
+
+    /// LV.8 작업 내용
+    @PatchMapping("/games/{gameId}")
+    public ResponseEntity<Void> renameGame(
+            @PathVariable Long gameId,
+            @Valid @RequestBody RenameRequest request
+    ) {
+        gameService.renameGame(gameId, request);
+        return ResponseEntity.noContent().build();
+    }
+    ///
+
+    /// LV.8 작업 내용
+    @DeleteMapping("/games/{gameId}")
+    public ResponseEntity<Void> deleteGame(@PathVariable Long gameId) {
+        gameService.deleteGame(gameId);
+        return ResponseEntity.noContent().build();
     }
     ///
 }
