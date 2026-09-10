@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 ///
 
+import com.gamebasic.game.dto.GameSummaryResponse; //LV.7
+
 import java.util.List;
 
 @RestController
@@ -26,10 +28,10 @@ public class GameController {
     private final GameService gameService;
 
     @GetMapping("/games") //LV.3 작업 내용(game -> games)
-    public ResponseEntity<List<Object>> getGames() {
+    public ResponseEntity<List<GameSummaryResponse>> getGames() {
         // List<Object>는 임시 구현이며, Lv 7에서 제대로 고칩니다.
         // List.of()는 빈 목록을 돌려주는 임시 구현이며, Lv 7에서 제대로 고칩니다.
-        return ResponseEntity.ok(List.of());
+        return ResponseEntity.ok(gameService.getGames());
     }
 
     @PostMapping("/games")
@@ -46,4 +48,15 @@ public class GameController {
      ) {
          return ResponseEntity.ok(gameService.updateProgress(gameId, request));
      }
+
+    /// LV.7 작업 내용
+    @GetMapping("/games/{gameId}")
+    public ResponseEntity<GameDetailResponse> getGame(
+            @PathVariable Long gameId
+    ) {
+        return ResponseEntity.ok(
+                gameService.getGame(gameId)
+        );
+    }
+    ///
 }
