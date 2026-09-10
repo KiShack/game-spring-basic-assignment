@@ -13,10 +13,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
+import org.springframework.stereotype.Service; //LV.2
 import java.util.ArrayList;
 import java.util.List;
 
+@Service //LV.2 작업 내용
 @RequiredArgsConstructor
 public class GameService {
 
