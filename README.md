@@ -43,9 +43,22 @@ application.properties : 'Spring Boot'에서 'MySQL'에 접속할 때 필요한 
 
 ### Lv 4. @Transactional
 
+* 트랜잭션(Transactional) : 여러 개의 데이터베이스 작업을 하나의 작업 단위로 묶어 처리하는 것. **작업 중 문제가 발생하면 전체 작업을 되돌릴 수 있다.**
+   -> 데이터 중 일부만 저장되는 식의 불완전한 상태를 방지하기 위함.
+
+* @Transactional : 해당 메서드를 하나의 트랜잭션으로 처리하도록 'Spring'에게 알려주는 어노테이션.
+
+* readOnly : 트랜잭션을 읽기 전용으로 설정하는 옵션. 데이터를 조회할 때 사용하며, 데이터를 저장하거나 수정하는 작업에는 사용하지 않는다.
+
 ---
 
 ### Lv 5. Bean Validation: 게임 생성
+
+* DTO(Data Transfer Object) : 계층이나 프로그램 사이에서 데이터를 전달하기 위한 객체.
+
+* Validation(검증) : 클라이언트가 보낸 데이터가 정해진 조건에 맞는지 확인하는 것.
+
+* Bean Validation : @NotBlank, @NotNull, @Size, @Min, @Max 등의 어노테이션을 사용하여 데이터의 조건을 선언적으로 검증하는 방법.
 
 ---
 
